@@ -1,0 +1,17 @@
+.nav {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  width: 100%;
+  border-bottom: 2px solid;
+}
+
+.navLink {
+  text-decoration: none;
+  color: black;
+  margin: 10px;
+}
+
+.navLink[aria-current='page'] {
+  color: red;
+}
