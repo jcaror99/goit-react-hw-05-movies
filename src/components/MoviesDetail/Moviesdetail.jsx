@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import { getDetailMovies } from 'services/getDetailMovies';
 import { getImages } from 'services/getImages';
 import css from './MoviesDetail.module.css';
+import { Link, Outlet } from 'react-router-dom';
 
 const MoviesDetail = () => {
   const { moviesId } = useParams();
@@ -37,38 +38,54 @@ const MoviesDetail = () => {
   }, [moviesId]);
 
   return (
-    <div className={css.container}>
-      <div>
-        <img
-          src={
-            imageMovies.base_url &&
-            imageMovies.poster_sizes &&
-            detailMovies.poster_path
-              ? `${imageMovies.base_url}${imageMovies.poster_sizes[3]}${detailMovies.poster_path}`
-              : ''
-          }
-          alt={detailMovies.title}
-        />
+    <div>
+      <div className={css.container}>
+        <div>
+          <img
+            src={
+              imageMovies.base_url &&
+              imageMovies.poster_sizes &&
+              detailMovies.poster_path
+                ? `${imageMovies.base_url}${imageMovies.poster_sizes[3]}${detailMovies.poster_path}`
+                : ''
+            }
+            alt={detailMovies.title}
+          />
+        </div>
+        <div>
+          <ul>
+            <li>
+              <h1>{detailMovies.title}</h1>
+            </li>
+            <li>User Score: {detailMovies.vote_average}%</li>
+            <li>
+              <h3>Overview</h3>
+            </li>
+            <li>{detailMovies.overview}</li>
+            <li>
+              <h3>Genres</h3>
+            </li>
+            <li>
+              {detailMovies.genres
+                ? detailMovies.genres.map(element => element.name + ' ')
+                : ''}
+            </li>
+          </ul>
+        </div>
       </div>
       <div>
+        <h2>Additional information</h2>
         <ul>
-          <li>
-            <h1>{detailMovies.title}</h1>
+          <li key="Cast">
+            <Link to="cast">Cast</Link>
           </li>
-          <li>User Score: {detailMovies.vote_average}%</li>
-          <li>
-            <h3>Overview</h3>
-          </li>
-          <li>{detailMovies.overview}</li>
-          <li>
-            <h3>Genres</h3>
-          </li>
-          <li>
-            {detailMovies.genres
-              ? detailMovies.genres.map(element => element.name + ' ')
-              : ''}
+          <li key="Reviews">
+            <Link to="reviews">Reviews</Link>
           </li>
         </ul>
+      </div>
+      <div>
+        <Outlet />
       </div>
     </div>
   );
