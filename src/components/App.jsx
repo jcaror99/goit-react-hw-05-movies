@@ -1,13 +1,13 @@
 import { Routes, Route, NavLink } from 'react-router-dom';
 import { lazy, Suspense } from 'react';
-import Home from './Home/Home';
-import Movies from './Movies/Movies';
 import NotFound from './NotFound/NotFound';
 import css from './App.module.css';
-import MoviesDetail from './MoviesDetail/Moviesdetail';
-import Reviews from './Reviews/Reviews';
 
+const Home = lazy(() => import('./Home/Home'));
+const Movies = lazy(() => import('./Movies/Movies'));
+const MoviesDetail = lazy(() => import('./MoviesDetail/Moviesdetail'));
 const Cast = lazy(() => import('./Cast/Cast'));
+const Reviews = lazy(() => import('./Reviews/Reviews'));
 
 export const App = () => {
   return (
