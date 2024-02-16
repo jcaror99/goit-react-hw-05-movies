@@ -13,7 +13,7 @@ export const App = () => {
   return (
     <div>
       <nav className={css.nav}>
-        <NavLink to="/" className={css.navLink}>
+        <NavLink to="/goit-react-hw-05-movies" className={css.navLink}>
           Home
         </NavLink>
         <NavLink to="/Movies" className={css.navLink}>
@@ -22,7 +22,7 @@ export const App = () => {
       </nav>
       <Suspense fallback={<div>Loading please wait...</div>}>
         <Routes>
-          <Route path="/" element={<Home />}></Route>
+          <Route path="/goit-react-hw-05-movies" element={<Home />}></Route>
           <Route path="/movies" element={<Movies />}></Route>
           <Route path="/movies?query=:movies" element={<Movies />}></Route>
           <Route path="/movies/:moviesId" element={<MoviesDetail />}>
